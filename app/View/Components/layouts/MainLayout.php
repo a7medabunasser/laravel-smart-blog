@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\layout;
+namespace App\View\Components\layouts;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -17,7 +17,7 @@ class MainLayout extends Component
      * we can also define the properties as promotion in the constructor
      * and it will automatically pass to the view without the need to pass it in the render method
      */
-    public function __construct(public string $title, public string $mainClass)
+    public function __construct(public string $title)
     {
         //
     }

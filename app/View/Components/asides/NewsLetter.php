@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\layout\asides;
+namespace App\View\Components\asides;
 
 use Closure;
 use Illuminate\Contracts\View\View;
