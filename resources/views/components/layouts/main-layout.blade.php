@@ -194,11 +194,11 @@
 
     <!-- Alerts -->
     @if ($errors->any())
-        <x-alerts.toastr icon="error" message="{{ $errors->first() }}" />
+        <x-alerts.toastr icon="error" status="{{ $errors->first() }}" />
     @endif
 
-    @if (session('message'))
-        <x-alerts.toastr icon="success" message="{{ session('message') }}" />
+    @if (session('status'))
+        <x-alerts.toastr icon="success" status="{{ session('status') }}" />
     @endif
     @stack('scripts')
 </body>

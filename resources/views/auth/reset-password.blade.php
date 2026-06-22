@@ -58,7 +58,5 @@
             </div>
         </div>
     </main>
-    @push('script')
-        <script src="{{ asset('assets/visibility.js') }}" defer></script>
-    @endpush
+    <script src="{{ asset('assets/visibility.js') }}" defer></script>
 </x-layouts.main-layout>

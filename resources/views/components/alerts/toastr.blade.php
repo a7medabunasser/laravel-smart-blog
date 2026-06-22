@@ -1,9 +1,9 @@
 @props([
-    'message' => '',
+    'status' => '',
     'icon' => '',
 ])
 
-@if ($message)
+@if ($status)
     <script>
         function showToast() {
             toastr.options = {
@@ -11,7 +11,7 @@
                 timeOut: 2000,
             };
 
-            toastr[@js($icon)](@js($message));
+            toastr[@js($icon)](@js($status));
         }
 
         if (document.readyState === 'loading') {

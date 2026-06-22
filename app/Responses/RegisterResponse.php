@@ -9,6 +9,6 @@ class RegisterResponse implements RegisterResponseContract
     public function toResponse($request)
     {
         return redirect('/dashboard')
-            ->with('message', 'Account created successfully!');
+            ->with('status', 'Account created successfully!');
     }
 }

@@ -9,6 +9,6 @@ class LoginResponse implements LoginResponseContract
     public function toResponse($request)
     {
         return redirect('/dashboard')
-            ->with('message', 'Welcome back!');
+            ->with('status', 'Welcome back!');
     }
 }
