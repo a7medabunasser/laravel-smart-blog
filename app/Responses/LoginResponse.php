@@ -8,7 +8,6 @@ class LoginResponse implements LoginResponseContract
 {
     public function toResponse($request)
     {
-        return redirect('/dashboard')
-            ->with('status', 'Welcome back!');
+        return redirect(route('dashboard.posts.index'))->with('status', 'Welcome back!');
     }
 }

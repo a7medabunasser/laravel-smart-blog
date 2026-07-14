@@ -81,7 +81,7 @@
     </main>
     <!-- Error Messages -->
     @if ($errors->updatePassword->any())
-        <x-alerts.toastr icon="error" message="{{ $errors->updatePassword->first() }}" />
+        <x-alerts.toastr icon="error" status="{{ $errors->updatePassword->first() }}" />
     @endif
     <script src="{{ asset('assets/visibility.js') }}" defer></script>
 </x-layouts.main-layout>
