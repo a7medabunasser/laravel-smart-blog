@@ -1,10 +1,5 @@
 @auth('web')
     <div class="flex items-center gap-3">
-        <a href="#"
-            class="ml-2 bg-primary-container text-on-primary px-6 py-2 rounded-lg font-ui-button text-ui-button hover:opacity-90 active:scale-95 transition-all">
-            Create Post
-        </a>
-
         <div class="relative">
             <button id="user-menu-button" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="user-menu"
                 class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-outline-variant bg-purple-700 text-white shadow-sm transition duration-200 hover:bg-purple-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">

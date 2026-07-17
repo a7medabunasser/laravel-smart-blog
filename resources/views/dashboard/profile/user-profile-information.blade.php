@@ -16,25 +16,48 @@
                         @csrf
                         @method('PUT')
                         <!-- Avatar Section -->
-                        <div class="flex items-center gap-8">
-                            <div class="relative group">
+                        <div class="flex items-center gap-6">
+                            <!-- Avatar -->
+                            <div class="relative group shrink-0">
                                 <div
                                     class="w-24 h-24 rounded-full overflow-hidden border-2 border-outline-variant bg-surface-container-low">
-                                    <img id="profile-picture-preview" alt="Avatar" class="w-full h-full object-cover"
-                                        data-alt="Close up portrait of a male user with a neutral, professional expression, used for a digital account profile photo. The background is a clean white studio setting with soft directional lighting. The image style is sharp and editorial, matching the minimalist paper-and-ink aesthetic of the application."
-                                        src="{{ auth()->user()->profile_picture ? asset('storage/' . auth()->user()->profile_picture) : 'https://ui-avatars.com/api/?name=' . urlencode(auth()->user()->name) . '&background=7c3aed&color=fff' }}" />
+                                    <img id="profile-picture-preview" class="w-full h-full object-cover"
+                                        src="{{ auth()->user()->profile_picture
+                                            ? asset('storage/' . auth()->user()->profile_picture)
+                                            : 'https://ui-avatars.com/api/?name=' . urlencode(auth()->user()->name) . '&background=7c3aed&color=fff' }}"
+                                        alt="Profile Picture"
+                                        data-default-avatar="https://ui-avatars.com/api/?name={{ urlencode(auth()->user()->name) }}&background=7c3aed&color=fff">
                                 </div>
+
                                 <label for="profile_picture"
-                                    class="absolute inset-0 bg-on-background/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-full"
-                                    role="button">
-                                    <span class="material-symbols-outlined text-white" data-icon="edit">edit</span>
+                                    class="absolute inset-0 flex items-center justify-center rounded-full bg-black/40 opacity-0 transition-opacity group-hover:opacity-100 cursor-pointer">
+                                    <span class="material-symbols-outlined text-white">
+                                        photo_camera
+                                    </span>
                                 </label>
                             </div>
-                            <div>
-                                <h3 class="font-ui-label text-ui-label font-bold mb-1">Profile Picture</h3>
-                                <p class="font-metadata text-metadata text-secondary mb-3">PNG or JPG, max 2MB</p>
-                                <input id="profile_picture" class="hidden" name="profile_picture" type="file"
-                                    accept="image/png,image/jpeg" />
+
+                            <!-- Details -->
+                            <div class="flex-1 space-y-2">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="font-ui-label text-ui-label font-semibold">
+                                        Profile Picture
+                                    </h3>
+
+                                    <button type="button" id="remove-avatar-btn"
+                                        class="text-sm font-medium text-error hover:underline transition-colors {{ auth()->user()->profile_picture ? '' : 'hidden' }}">
+                                        Remove
+                                    </button>
+                                </div>
+
+                                <p class="text-metadata text-secondary">
+                                    PNG or JPEG, max 1MB
+                                </p>
+
+                                <input id="profile_picture" name="profile_picture" type="file"
+                                    accept="image/png,image/jpeg" class="hidden">
+                                <input type="hidden" name="remove_profile_picture" id="remove_profile_picture"
+                                    value="0">
                             </div>
                         </div>
                         <!-- Form Fields -->
@@ -75,21 +98,9 @@
         </div>
     </main>
     @if ($errors->updateProfileInformation->any())
-        <x-alerts.toastr icon="error" message="{{ $errors->updateProfileInformation->first() }}" />
+        <x-alerts.toastr icon="error" status="{{ $errors->updateProfileInformation->first() }}" />
     @endif
     @push('scripts')
-        <script>
-            const profilePictureInput = document.getElementById('profile_picture');
-            const profilePicturePreview = document.getElementById('profile-picture-preview');
-
-            profilePictureInput.addEventListener('change', function() {
-                const file = this.files[0];
-
-                if (!file) {
-                    return;
-                }
-                profilePicturePreview.src = URL.createObjectURL(file);
-            });
-        </script>
+        <script src="{{ asset('assets/profile.js') }}"></script>
     @endpush
 </x-layouts.main-layout>

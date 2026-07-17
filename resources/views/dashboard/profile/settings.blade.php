@@ -14,8 +14,9 @@
                     <div class="flex justify-between items-start">
                         <div>
                             <h3 class="font-ui-label text-ui-label font-bold text-on-surface mb-1">Password</h3>
-                            <p class="text-on-surface-variant font-ui-label text-ui-label">Security is paramount. Last
-                                changed 3 months ago.</p>
+                            <p class="text-on-surface-variant font-ui-label text-ui-label">
+                                Security is paramount. Last changed {{ auth()->user()->updated_at->diffForHumans() }}.
+                            </p>
                         </div>
                         <a class="px-4 py-2 border border-outline text-on-surface font-ui-button text-ui-button rounded-lg hover:bg-surface-container transition-all inline-flex items-center gap-2"
                             href="{{ route('dashboard.profile.update-password') }}">
@@ -33,16 +34,24 @@
                             <p class="text-on-surface-variant font-ui-label text-ui-label max-w-[400px]">Permanently
                                 remove your account and all published content. This action is irreversible.</p>
                         </div>
-                        <div class="flex gap-4">
-                            <button
-                                class="text-secondary hover:text-on-surface font-ui-label text-ui-label font-semibold -offset-4">Deactivate
-                                Temporarily</button>
-                            <button
-                                class="bg-error text-on-error font-ui-button text-ui-button px-6 py-2.5 rounded-lg hover:bg-error/90 transition-all">Delete
-                                Forever</button>
+                        <div>
+                            <form id="delete-account-form"
+                                action="{{ route('dashboard.profile.destroy', auth()->user()->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button"
+                                    onclick="openConfirmDialog('confirm-delete-account', () => document.getElementById('delete-account-form').submit())"
+                                    class="bg-error text-on-error font-ui-button text-ui-button px-6 py-2.5 rounded-lg hover:bg-error/90 transition-all">
+                                    Delete Forever
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </section>
+
+                <x-dialog.confirm id="confirm-delete-account" title="Delete Account"
+                    description="Are you sure you want to permanently delete your account? All of your posts and data will be removed forever. This action is irreversible."
+                    confirmText="Delete Forever" />
             </div>
         </div>
     </main>

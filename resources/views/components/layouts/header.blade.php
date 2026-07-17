@@ -23,12 +23,18 @@
                         href="#">Ink
                         &amp; Paper</a>
                     <nav class="hidden md:flex items-center gap-6">
-                        <a class="text-primary font-bold border-b-2 border-primary pb-1 font-ui-label text-ui-label hover:text-primary transition-colors duration-200"
-                            href="#">Feed</a>
-                        <a class="text-on-surface-variant font-medium font-ui-label text-ui-label hover:text-primary transition-colors duration-200"
-                            href="#">Authors</a>
-                        <a class="text-on-surface-variant font-medium font-ui-label text-ui-label hover:text-primary transition-colors duration-200"
-                            href="#">Dashboard</a>
+                        <x-layouts.nav-links route="{{ route('dashboard.posts.index') }}"
+                            activeRoute="dashboard.posts.index">
+                            Dashboard
+                        </x-layouts.nav-links>
+
+                        <x-layouts.nav-links route="{{ route('home') }}" activeRoute="home">
+                            Feed
+                        </x-layouts.nav-links>
+
+                        <x-layouts.nav-links route="#">
+                            Authors
+                        </x-layouts.nav-links>
                     </nav>
                 </div>
                 <div class="flex items-center gap-4">

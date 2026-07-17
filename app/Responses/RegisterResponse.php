@@ -8,7 +8,7 @@ class RegisterResponse implements RegisterResponseContract
 {
     public function toResponse($request)
     {
-        return redirect('/dashboard')
+        return  redirect(route('dashboard.posts.index'))
             ->with('status', 'Account created successfully!');
     }
 }
